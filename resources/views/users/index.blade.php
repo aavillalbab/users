@@ -13,6 +13,15 @@
 
                     </div>
                     <br>
+                    @if (session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>Excelente!</strong> {{ session('success') }}
+                        </div>
+                    @endif
+                    <br>
                     <div class="table-container">
                         <table id="mytable" class="table table-bordered table-striped">
                             <thead>
@@ -32,7 +41,16 @@
                                         <td>{{$user->document}}</td>
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->phone}}</td>
-                                        <td>Editar</td>
+                                        <td>
+                                            <a data-toggle="tooltip"
+                                               data-placement="left"
+                                               title="Editar"
+                                               href="{{ route('users.edit', $user->id) }}"
+                                               class="btn btn-secondary"
+                                               role="button">
+                                                Editar
+                                            </a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             @else
